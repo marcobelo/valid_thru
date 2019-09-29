@@ -11,7 +11,7 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route("/valid-thru/")  # ?month=02&year=2020
+@app.route("/valid-thru/", methods=["GET"])  # ?month=02&year=2020
 def valid_thru():
     data = {"month": request.args.get("month"), "year": request.args.get("year")}
 
@@ -25,6 +25,15 @@ def valid_thru():
         return json.dumps(exc.messages)
 
     return json.dumps(validated_response)
+
+
+@app.route("/client/", methods=["GET", "POST"])
+def client():
+    if request.method == "POST":
+        client = request.json
+        # TODO: Add schema to validate data
+        # TODO: insert data on "database"
+        # TODO: return message: (Client added.) or (Client already exist.)
 
 
 if __name__ == "__main__":
