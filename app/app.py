@@ -14,13 +14,13 @@ CORS(app)
 def valid_thru():
     data = {"month": request.args.get("month"), "year": request.args.get("year")}
     validated_data = ValidThruRequest().load(data)
-    # TODO: Create Client to get data
+    response_data = valid_thru_client.cards_valid_thru_this_month_year(validated_data)
     # TODO: Create validation for response
-    return json.dumps(validated_data)
+    return json.dumps(response_data)
 
 
 if __name__ == "__main__":
     valid_thru_client = ValidThruClient()
-    valid_thru_client.populate(5000)
+    valid_thru_client.populate(1000)
 
     app.run(host="0.0.0.0", port=8000)
