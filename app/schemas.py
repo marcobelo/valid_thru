@@ -1,5 +1,5 @@
 from marshmallow import EXCLUDE, Schema, pre_load
-from marshmallow.fields import Boolean, Integer, String
+from marshmallow.fields import Boolean, Date, Integer, String
 from marshmallow.validate import Length, Range
 
 
@@ -30,3 +30,11 @@ class ValidThruResponse(BaseSchema):
     month = Integer(required=True, validate=Range(min=1, max=12))
     year = Integer(required=True)
     is_active = Boolean(required=True)
+
+
+class ClientRequest(BaseSchema):
+    name = String(required=True, validate=Length(min=1, error="Field cannot be empty."))
+    address = String(
+        required=True, validate=Length(min=1, error="Field cannot be empty.")
+    )
+    dob = Date(required=True)

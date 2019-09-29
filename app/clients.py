@@ -1,5 +1,6 @@
 import csv
 from datetime import date
+from schemas import ClientRequest
 
 from faker import Faker
 
@@ -73,3 +74,63 @@ class ValidThruClient:
                         }
                     )
         return near_to_expire
+
+    def add_client(self, data):
+        for client_id, client in self._clients.items():
+            if data["name"] == client["name"]:
+                if (
+                    data["address"] == client["address"]
+                    and data["dob"] == client["dob"]
+                ):
+                    return {
+                        "message": "Client already on our database.",
+                        "client_id": client_id,
+                    }
+
+        self._clients[self._client_id_counter] = data
+        self._client_id_counter += 1
+
+        return {
+            "message": "Client added with success.",
+            "client_id": self._client_id_counter - 1,
+        }
+
+    def get_client(self, client_id):
+        try:
+            return ClientRequest().dump(self._clients[client_id])
+        except KeyError:
+            return {"message": "Client not found."}
+
+    def update_client(self, client_id, data):
+        id_found = False
+        try:
+            for _client_id, _client in self._clients.items():
+                if client_id == _client_id:
+                    id_found = True
+                if data["name"] == _client["name"]:
+                    if (
+                        data["address"] == _client["address"]
+                        and data["dob"] == _client["dob"]
+                    ):
+                        return {
+                            "message": "Cannot update, this client is already registered.",
+                            "client_id": _client_id,
+                        }
+            if id_found:
+                self._clients[client_id] = data
+                return {
+                    "message": "Client updated with success.",
+                    "client_id": client_id,
+                }
+            return {"message": "Client id not found.", "client_id": client_id}
+
+        except KeyError:
+            return {"message": "Client doesn't exists."}
+
+    def delete_client(self, client_id):
+        try:
+            del self._clients[client_id]
+            return {"message": "Client delete with success."}
+        except KeyError:
+            return {"message": "Client not found.", "client_id": client_id}
+

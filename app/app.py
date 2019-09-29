@@ -5,7 +5,7 @@ from flask_cors import CORS
 from marshmallow import ValidationError
 
 from clients import ValidThruClient
-from schemas import ValidThruRequest, ValidThruResponse
+from schemas import ValidThruRequest, ValidThruResponse, ClientRequest
 
 app = Flask(__name__)
 CORS(app)
@@ -27,13 +27,36 @@ def valid_thru():
     return json.dumps(validated_response)
 
 
-@app.route("/client/", methods=["GET", "POST"])
+@app.route("/client/", methods=["GET", "POST", "PUT", "DELETE"])
 def client():
     if request.method == "POST":
         client = request.json
-        # TODO: Add schema to validate data
-        # TODO: insert data on "database"
-        # TODO: return message: (Client added.) or (Client already exist.)
+        client = ClientRequest().load(client)
+        validated_data = ClientRequest().dump(client)
+        result = valid_thru_client.add_client(validated_data)
+
+        return json.dumps(result)
+
+    elif request.method == "GET":  # ?id=3
+        client_id = int(request.args.get("id"))
+        result = valid_thru_client.get_client(client_id)
+
+        return json.dumps(result)
+
+    elif request.method == "PUT":  # ?id=3
+        client_id = int(request.args.get("id"))
+        client = request.json
+        client = ClientRequest().load(client)
+        # validated_data = ClientRequest().dump(client)
+        result = valid_thru_client.update_client(client_id, client)
+
+        return json.dumps(result)
+
+    elif request.method == "DELETE":
+        client_id = int(request.args.get("id"))
+        result = valid_thru_client.delete_client(client_id)
+
+        return json.dumps(result)
 
 
 if __name__ == "__main__":

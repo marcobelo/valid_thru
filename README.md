@@ -22,4 +22,6 @@ The server runs on:
 
 The **available endpoints** are (the query params are just examples):
 
-* **/valid-thru/?month=03&year=2028**
+* **/valid-thru/?month=03&year=2028** *[GET]*
+* **/client/** *[POST]*
+* **/client/?id=3** *[GET, PUT, DELETE]*

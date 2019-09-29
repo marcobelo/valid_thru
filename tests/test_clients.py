@@ -11,6 +11,15 @@ def test_populate_in_memory():
     assert len(valid_thru_client._cards) == 100
 
 
+def test_populate_from_csv_in_memory():
+    valid_thru_client = ValidThruClient()
+    valid_thru_client.populate_from_csv("app/cards.csv")
+
+    assert len(valid_thru_client._clients) == 10000
+    assert valid_thru_client._client_id_counter == 10001
+    assert len(valid_thru_client._cards) == 30068
+
+
 def test_get_cards_valid_thru_that_month_and_year():
     valid_thru_client = ValidThruClient()
     valid_thru_client.populate(1000)
