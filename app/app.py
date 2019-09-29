@@ -4,7 +4,7 @@ from flask import Flask, request
 from flask_cors import CORS
 
 from clients import ValidThruClient
-from schemas import ValidThruRequest
+from schemas import ValidThruRequest, ValidThruResponse
 
 app = Flask(__name__)
 CORS(app)
@@ -15,8 +15,9 @@ def valid_thru():
     data = {"month": request.args.get("month"), "year": request.args.get("year")}
     validated_data = ValidThruRequest().load(data)
     response_data = valid_thru_client.cards_valid_thru_this_month_year(validated_data)
-    # TODO: Create validation for response
-    return json.dumps(response_data)
+    validated_response = ValidThruResponse(many=True).load(response_data)
+
+    return json.dumps(validated_response)
 
 
 if __name__ == "__main__":
