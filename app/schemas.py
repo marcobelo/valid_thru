@@ -1,4 +1,4 @@
-from marshmallow import Schema, EXCLUDE, pre_load
+from marshmallow import EXCLUDE, Schema, pre_load
 from marshmallow.fields import Integer
 from marshmallow.validate import Range
 

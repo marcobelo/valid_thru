@@ -2,6 +2,8 @@ import json
 
 from flask import Flask, request
 from flask_cors import CORS
+
+from clients import ValidThruClient
 from schemas import ValidThruRequest
 
 app = Flask(__name__)
@@ -18,5 +20,7 @@ def valid_thru():
 
 
 if __name__ == "__main__":
-    # TODO: Populate data (in memory) from here
+    valid_thru_client = ValidThruClient()
+    valid_thru_client.populate(5000)
+
     app.run(host="0.0.0.0", port=8000)
