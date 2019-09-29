@@ -1,0 +1,61 @@
+openapi: 3.0.1
+info:
+  title: Valid-Thru
+  description: Valid thru service
+  contact:
+    email: "marco.barone.belo@gmail.com"
+  version: 0.0.1
+servers:
+  - url: "http://localhost:8000/"
+tags:
+  - name: Utilities
+
+paths:
+  /valid-thru/:
+    get:
+      tags:
+        - Utilities
+      summary: Returns all cards that will expired on the recieved month/year.
+      parameters:
+        - in: query
+          name: month
+          schema:
+            type: integer
+            example: 2
+          required: true
+          description: Integer representing the desired month
+        - in: query
+          name: year
+          schema:
+            type: integer
+            example: 2020
+          required: true
+          description: Integer representing the desired year
+      responses:
+        200:
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    client_id:
+                      type: integer
+                      example: 14
+                    card_holder:
+                      type: string
+                      example: John Django
+                    card_number:
+                      type: string
+                      example: "1111222233334444"
+                    month:
+                      type: integer
+                      example: 2
+                    year:
+                      type: integer
+                      example: 2020
+                    is_active:
+                      type: boolean
+                      example: true

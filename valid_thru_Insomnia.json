@@ -1,0 +1,204 @@
+{
+    "_type": "export",
+    "__export_format": 4,
+    "__export_date": "2019-09-29T23:17:17.543Z",
+    "__export_source": "insomnia.desktop.app:v6.6.2",
+    "resources": [
+        {
+            "_id": "req_5329c2bb6dc94289bd1ba6fe9e0a3ee3",
+            "authentication": {},
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"number\": \"1111222233334444\", \n\t\"expiration_date\": \"2025-01-01\"\n}"
+            },
+            "created": 1569793164432,
+            "description": "",
+            "headers": [
+                {
+                    "id": "pair_e86e7e2cc3a64a1990a55685c64a7f56",
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "isPrivate": false,
+            "metaSortKey": -1569793164432,
+            "method": "POST",
+            "modified": 1569793310202,
+            "name": "card",
+            "parameters": [],
+            "parentId": "wrk_55fb9650adff40cf805b8a66c474206c",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{base_url}}card/?client_id=1",
+            "_type": "request"
+        },
+        {
+            "_id": "wrk_55fb9650adff40cf805b8a66c474206c",
+            "created": 1569788084237,
+            "description": "",
+            "modified": 1569788084237,
+            "name": "Valid_Thru",
+            "parentId": null,
+            "_type": "workspace"
+        },
+        {
+            "_id": "req_4f89a02b3ba24397b2797be21b83b581",
+            "authentication": {},
+            "body": {},
+            "created": 1569791966393,
+            "description": "",
+            "headers": [],
+            "isPrivate": false,
+            "metaSortKey": -1569791966393,
+            "method": "DELETE",
+            "modified": 1569793068355,
+            "name": "client",
+            "parameters": [],
+            "parentId": "wrk_55fb9650adff40cf805b8a66c474206c",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{base_url}}client/?id=10001",
+            "_type": "request"
+        },
+        {
+            "_id": "req_b2cffbcad7af4cf4a76d3174f306ec3c",
+            "authentication": {},
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"name\": \"Marco B2s\",\n\t\"address\": \"Arnaldo St\",\n\t\"dob\": \"1990-06-04\"\n}"
+            },
+            "created": 1569791538043,
+            "description": "",
+            "headers": [
+                {
+                    "id": "pair_c04caba6ab5f4386a5e5dd6c7e44a097",
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "isPrivate": false,
+            "metaSortKey": -1569791538043,
+            "method": "PUT",
+            "modified": 1569793060644,
+            "name": "client",
+            "parameters": [],
+            "parentId": "wrk_55fb9650adff40cf805b8a66c474206c",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{base_url}}client/?id=10001",
+            "_type": "request"
+        },
+        {
+            "_id": "req_17aa1fa1cf57468ead5a3673e4c80e02",
+            "authentication": {},
+            "body": {},
+            "created": 1569790166246,
+            "description": "",
+            "headers": [],
+            "isPrivate": false,
+            "metaSortKey": -1569790166246,
+            "method": "GET",
+            "modified": 1569793937601,
+            "name": "client",
+            "parameters": [],
+            "parentId": "wrk_55fb9650adff40cf805b8a66c474206c",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{base_url}}client/?id=1",
+            "_type": "request"
+        },
+        {
+            "_id": "req_cdf98c48bfd3441f9d4141d15ac28ab2",
+            "authentication": {},
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"name\": \"Marco B Belo22\",\n\t\"address\": \"Arnaldo St\",\n\t\"dob\": \"1990-06-04\"\n}"
+            },
+            "created": 1569788260473,
+            "description": "",
+            "headers": [
+                {
+                    "id": "pair_44395be03eec409091ef94257fd2f1c9",
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "isPrivate": false,
+            "metaSortKey": -1569788260473,
+            "method": "POST",
+            "modified": 1569793037706,
+            "name": "client",
+            "parameters": [],
+            "parentId": "wrk_55fb9650adff40cf805b8a66c474206c",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{base_url}}client/",
+            "_type": "request"
+        },
+        {
+            "_id": "req_8cb40ff38b4b44539c017cb26784f14d",
+            "authentication": {},
+            "body": {},
+            "created": 1569788132970,
+            "description": "",
+            "headers": [],
+            "isPrivate": false,
+            "metaSortKey": -1569788132970,
+            "method": "GET",
+            "modified": 1569793405325,
+            "name": "valid_thru",
+            "parameters": [],
+            "parentId": "wrk_55fb9650adff40cf805b8a66c474206c",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{base_url}}valid-thru/?month=1&year=2025",
+            "_type": "request"
+        },
+        {
+            "_id": "env_0cab5cac1608db546ebe4345fdb171081d189d1d",
+            "color": null,
+            "created": 1569788084249,
+            "data": {
+                "base_url": "http://localhost:8000/"
+            },
+            "dataPropertyOrder": {
+                "&": [
+                    "base_url"
+                ]
+            },
+            "isPrivate": false,
+            "metaSortKey": 1569788084249,
+            "modified": 1569788115421,
+            "name": "Base Environment",
+            "parentId": "wrk_55fb9650adff40cf805b8a66c474206c",
+            "_type": "environment"
+        },
+        {
+            "_id": "jar_0cab5cac1608db546ebe4345fdb171081d189d1d",
+            "cookies": [],
+            "created": 1569788084252,
+            "modified": 1569788084252,
+            "name": "Default Jar",
+            "parentId": "wrk_55fb9650adff40cf805b8a66c474206c",
+            "_type": "cookie_jar"
+        }
+    ]
+}
