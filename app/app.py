@@ -2,6 +2,7 @@ import json
 
 from flask import Flask, request
 from flask_cors import CORS
+from schemas import ValidThruRequest
 
 app = Flask(__name__)
 CORS(app)
@@ -10,10 +11,10 @@ CORS(app)
 @app.route("/valid-thru/")  # ?month=02&year=2020
 def valid_thru():
     data = {"month": request.args.get("month"), "year": request.args.get("year")}
-    # TODO: Create validation for request
+    validated_data = ValidThruRequest().load(data)
     # TODO: Create Client to get data
     # TODO: Create validation for response
-    return json.dumps(data)
+    return json.dumps(validated_data)
 
 
 if __name__ == "__main__":
