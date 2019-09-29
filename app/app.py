@@ -29,6 +29,7 @@ def valid_thru():
 
 if __name__ == "__main__":
     valid_thru_client = ValidThruClient()
-    valid_thru_client.populate(1000)
+    # valid_thru_client.populate(1000)
+    valid_thru_client.populate_from_csv("app/cards.csv")
 
     app.run(host="0.0.0.0", port=8000)

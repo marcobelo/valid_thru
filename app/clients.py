@@ -1,3 +1,4 @@
+import csv
 from datetime import date
 
 from faker import Faker
@@ -8,6 +9,27 @@ class ValidThruClient:
         self._cards = []
         self._clients = {}
         self._client_id_counter = 1
+
+    def populate_from_csv(self, filepath):
+        with open(filepath, newline="") as file:
+            reader = csv.reader(file, delimiter="|")
+            for line in reader:
+                card = {
+                    "client_id": int(line[0]),
+                    "number": line[1],
+                    "expiration_date": date(*[int(ymd) for ymd in line[2].split("-")]),
+                }
+                client = {
+                    "name": line[3],
+                    "address": line[4],
+                    "dob": date(*[int(ymd) for ymd in line[5].split("-")]),
+                }
+                self._cards.append(card)
+                try:
+                    self._clients[int(line[0])]
+                except KeyError:
+                    self._clients[int(line[0])] = client
+                    self._client_id_counter = int(line[0]) + 1
 
     def populate(self, amount):
         fake = Faker()
@@ -51,4 +73,3 @@ class ValidThruClient:
                         }
                     )
         return near_to_expire
-
