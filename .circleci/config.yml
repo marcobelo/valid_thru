@@ -17,10 +17,21 @@ jobs:
             - ./venv
           key: v1-dependencies-{{ checksum "requirements/dev.txt" }}
       - run:
-          name: "run test"
+          name: "run unit test"
           command: |
             . venv/bin/activate
-            make test
+            make test_unit
+      - run:
+          name: "Start Flask server"
+          background: true
+          command: |
+            . venv/bin/activate
+            make run_server
+      - run:
+          name: "run e2e test"
+          command: |
+            . venv/bin/activate
+            make test_e2e
       - store_artifacts:
           path: test-reports
           destination: test-reports
