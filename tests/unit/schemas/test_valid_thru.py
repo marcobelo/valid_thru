@@ -54,6 +54,7 @@ def test_response_valid_data():
     }
     validated_data = ValidThruResponse().load(data)
 
+    data["card_number"] = f"{'*' * 12}{data['card_number'][-4:]}"
     assert_that(validated_data, has_entries(data))
 
 

@@ -1,4 +1,4 @@
-from marshmallow import EXCLUDE, Schema, pre_load
+from marshmallow import EXCLUDE, Schema, pre_load, post_load
 from marshmallow.fields import Boolean, Date, Integer, String
 from marshmallow.validate import Length, Range
 
@@ -30,6 +30,11 @@ class ValidThruResponse(BaseSchema):
     month = Integer(required=True, validate=Range(min=1, max=12))
     year = Integer(required=True)
     is_active = Boolean(required=True)
+
+    @post_load
+    def hide_card_initials_numbers(self, data, **kwargs):
+        data["card_number"] = f"{'*' * 12}{data['card_number'][-4:]}"
+        return data
 
 
 class ClientRequest(BaseSchema):
