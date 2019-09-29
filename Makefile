@@ -5,3 +5,7 @@ clean:
 test:
 	. venv/bin/activate
 	pytest
+
+run_server:
+	. venv/bin/activate
+	python app/app.py
