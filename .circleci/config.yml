@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  tests:
+  build:
     docker:
       - image: circleci/python:3.6.8
     working_directory: ~/repo
@@ -29,4 +29,4 @@ workflows:
   version: 2
   workflow:
     jobs:
-      - tests
+      - build
