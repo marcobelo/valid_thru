@@ -2,6 +2,7 @@ import json
 
 from flask import Flask, request
 from flask_cors import CORS
+from marshmallow import ValidationError
 
 from clients import ValidThruClient
 from schemas import ValidThruRequest, ValidThruResponse
@@ -13,9 +14,15 @@ CORS(app)
 @app.route("/valid-thru/")  # ?month=02&year=2020
 def valid_thru():
     data = {"month": request.args.get("month"), "year": request.args.get("year")}
-    validated_data = ValidThruRequest().load(data)
-    response_data = valid_thru_client.cards_valid_thru_this_month_year(validated_data)
-    validated_response = ValidThruResponse(many=True).load(response_data)
+
+    try:
+        validated_data = ValidThruRequest().load(data)
+        response_data = valid_thru_client.cards_valid_thru_this_month_year(
+            validated_data
+        )
+        validated_response = ValidThruResponse(many=True).load(response_data)
+    except ValidationError as exc:
+        return json.dumps(exc.messages)
 
     return json.dumps(validated_response)
 
