@@ -38,3 +38,10 @@ class ClientRequest(BaseSchema):
         required=True, validate=Length(min=1, error="Field cannot be empty.")
     )
     dob = Date(required=True)
+
+
+class CardRequest(BaseSchema):
+    number = String(
+        required=True, validate=Length(equal=16, error="Not a valid card number.")
+    )
+    expiration_date = Date(required=True)

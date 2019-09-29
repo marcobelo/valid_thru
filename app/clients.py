@@ -1,8 +1,9 @@
 import csv
 from datetime import date
-from schemas import ClientRequest
 
 from faker import Faker
+
+from schemas import ClientRequest
 
 
 class ValidThruClient:
@@ -102,11 +103,8 @@ class ValidThruClient:
             return {"message": "Client not found."}
 
     def update_client(self, client_id, data):
-        id_found = False
         try:
             for _client_id, _client in self._clients.items():
-                if client_id == _client_id:
-                    id_found = True
                 if data["name"] == _client["name"]:
                     if (
                         data["address"] == _client["address"]
@@ -116,21 +114,28 @@ class ValidThruClient:
                             "message": "Cannot update, this client is already registered.",
                             "client_id": _client_id,
                         }
-            if id_found:
-                self._clients[client_id] = data
-                return {
-                    "message": "Client updated with success.",
-                    "client_id": client_id,
-                }
-            return {"message": "Client id not found.", "client_id": client_id}
+            self._clients[client_id]
+            self._clients[client_id] = data
+            return {"message": "Client updated with success.", "client_id": client_id}
 
         except KeyError:
             return {"message": "Client doesn't exists."}
 
     def delete_client(self, client_id):
         try:
+            self._cards = [
+                card for card in self._cards if card["client_id"] != client_id
+            ]
             del self._clients[client_id]
             return {"message": "Client delete with success."}
         except KeyError:
             return {"message": "Client not found.", "client_id": client_id}
 
+    def add_card(self, client_id, data):
+        try:
+            self._clients[client_id]
+            data["client_id"] = client_id
+            self._cards.append(data)
+            return {"message": "Card added with success.", "client_id": client_id}
+        except KeyError:
+            return {"message": "Client not found.", "client_id": client_id}

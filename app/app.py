@@ -5,7 +5,7 @@ from flask_cors import CORS
 from marshmallow import ValidationError
 
 from clients import ValidThruClient
-from schemas import ValidThruRequest, ValidThruResponse, ClientRequest
+from schemas import CardRequest, ClientRequest, ValidThruRequest, ValidThruResponse
 
 app = Flask(__name__)
 CORS(app)
@@ -32,8 +32,7 @@ def client():
     if request.method == "POST":
         client = request.json
         client = ClientRequest().load(client)
-        validated_data = ClientRequest().dump(client)
-        result = valid_thru_client.add_client(validated_data)
+        result = valid_thru_client.add_client(client)
 
         return json.dumps(result)
 
@@ -47,14 +46,24 @@ def client():
         client_id = int(request.args.get("id"))
         client = request.json
         client = ClientRequest().load(client)
-        # validated_data = ClientRequest().dump(client)
         result = valid_thru_client.update_client(client_id, client)
 
         return json.dumps(result)
 
-    elif request.method == "DELETE":
+    elif request.method == "DELETE":  # ?id=3
         client_id = int(request.args.get("id"))
         result = valid_thru_client.delete_client(client_id)
+
+        return json.dumps(result)
+
+
+@app.route("/card/", methods=["POST"])
+def card():
+    if request.method == "POST":  # ?client_id=3
+        client_id = int(request.args.get("client_id"))
+        card = request.json
+        card = CardRequest().load(card)
+        result = valid_thru_client.add_card(client_id, card)
 
         return json.dumps(result)
 
