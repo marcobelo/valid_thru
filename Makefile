@@ -14,3 +14,9 @@ test_e2e:
 
 run_server:
 	. venv/bin/activate && python app/app.py
+
+docker_build:
+	docker build --tag=valid_thru .
+
+docker_run:
+	docker run -p 8000:8000 valid_thru
