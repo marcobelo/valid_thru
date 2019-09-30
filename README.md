@@ -4,7 +4,7 @@
 
 ---
 
-All commands to execute this project can be found inside the Makefile.
+All commands to execute this project can be found inside the Makefile. It's require python 3.6+
 
 Step by step:
 
